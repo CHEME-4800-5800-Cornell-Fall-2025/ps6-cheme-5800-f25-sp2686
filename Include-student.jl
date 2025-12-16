@@ -1,7 +1,7 @@
 # setup paths -
 const _ROOT = @__DIR__
 const _PATH_TO_SRC = joinpath(_ROOT, "src");
-
+const _PATH_TO_SOLN = joinpath(_ROOT, "solution");
 
 # check: do we need to download any packages?
 using Pkg
@@ -25,6 +25,6 @@ using Test
 # Random.seed!(1234); # set the random seed for reproducibility
 
 # include my source files -
-include(joinpath(_PATH_TO_SRC, "Types.jl"));
-include(joinpath(_PATH_TO_SRC, "Factory.jl"));
-include(joinpath(_PATH_TO_SRC, "Compute.jl"));
+include(joinpath(_PATH_TO_SOLN, "Types.jl"));
+include(joinpath(_PATH_TO_SOLN, "Factory.jl"));
+include(joinpath(_PATH_TO_SOLN, "Compute.jl"));
