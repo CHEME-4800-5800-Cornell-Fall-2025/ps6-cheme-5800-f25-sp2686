@@ -13,6 +13,9 @@ A mutable type for the experimental context of the drug combination design probl
 - `B::Float64`: total budget in USD
 - `cost::Dict{Int, Float64}`: maps drug type to cost per mg/kg
 - `levels::Dict{Int, NamedTuple}`: maps drug level to drug concentration in mg/kg
+- `W::Float64`: weight of the patient in kg
+- `S::Float64`: safety constraint for maximum allowable dosage units: mg/kg-day
+- `bounds::Array{Float64,2}`: bounds for each drug type (L,U)
 """
 mutable struct MyExperimentalDrugCocktailContext <: MyAbstractContextModel
     
@@ -24,12 +27,8 @@ mutable struct MyExperimentalDrugCocktailContext <: MyAbstractContextModel
     cost::Dict{Int, Float64}      # maps drug type to cost per mg/kg
     levels::Dict{Int, NamedTuple} # maps drug level to drug concentration in mg/kg
     W::Float64             # weight of the patient in kg
-
-    # TODO: you need to add a safety field, and a bounds field here
     S::Float64             # safety constraint for maximum allowable dosage units: mg/kg-day
     bounds::Array{Float64,2}  # bounds for each drug type (L,U)
-
-    throw(ErrorException("You need to add a safety field, and a bounds field here"));
 
     # constructor -
     MyExperimentalDrugCocktailContext() = new(); # create new *empty* instance 
@@ -50,11 +49,11 @@ A mutable type for the Q-Learning Agent model.
 mutable struct MyQLearningAgentModel <: AbstractOnlineLearningModel
 
     # data -
-    states::Array{Int,1}
-    actions::Array{Int,1}
-    γ::Float64
-    α::Float64 
-    Q::Array{Float64,2}
+    states::Array{Int,1} # list of states
+    actions::Array{Int,1} # list of actions
+    γ::Float64 # discount factor
+    α::Float64 # learning rate
+    Q::Array{Float64,2} # Q-value table
 
     # constructor
     MyQLearningAgentModel() = new();
