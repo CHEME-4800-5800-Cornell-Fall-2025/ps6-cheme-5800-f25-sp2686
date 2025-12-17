@@ -1,5 +1,5 @@
 """
-    function solve(model::MyQLearningModel, environment::T, startstate::Int, maxsteps::Int;
+    function solve(model::MyQLearningModel, environment::T, startstate::Int, maxsteps::Int; 
         ϵ::Float64 = 0.2) -> MyQLearningModel where T <: AbstractWorldModel
 
 Simulate the Q-Learning agent in the given environment starting from the given state for a maximum number of steps.
